@@ -115,17 +115,6 @@ input[type=reset]:active {
     background: #e5e5e5;
 }
 
-input[type=button][disabled],
-input[type=submit][disabled],
-input[type=reset][disabled] {
-    background: #f6f6f6;
-    border: 1px solid #e0e0e0;
-    color: #999;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
 input[type=text],
 input.textwidget,
 textarea,
@@ -148,11 +137,33 @@ textarea:focus {
     -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
-fieldset { border: 1px solid #d7d7d7; padding: .5em; margin: 1em 0; }
+input[disabled],
+input[type=button][disabled],
+input[type=submit][disabled],
+input[type=reset][disabled] {
+    background: #f6f6f6;
+    border: 1px solid #e0e0e0;
+    color: #999;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+fieldset {
+    background: #fff;
+    border: 1px solid #bbb;
+    padding: .5em;
+    margin: 1em 0;
+}
 fieldset.iefix { background: transparent; border: none; padding: 0; margin: 0 }
 * html fieldset.iefix { width: 98% }
 fieldset.iefix p { margin: 0 }
-legend { color: #999; padding: 0 .25em; font-size: 90%; font-weight: bold }
+legend {
+    color: #444;
+    padding: 0 .25em;
+    xfont-size: 90%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
 label.disabled { color: #d7d7d7 }
 .buttons { margin: .5em .5em .5em 0 }
 .buttons form, .buttons form div { display: inline }
@@ -164,6 +175,8 @@ label.disabled { color: #d7d7d7 }
     background: none;
 }
 
+input[value="Add attachment"],
+input[name="remove"],
 input[name="submit"],
 input[name="save"] {
     color: #455508;
@@ -172,11 +185,15 @@ input[name="save"] {
     border-color: #a1c612;
 }
 
+input[value="Add attachment"]:active,
+input[name="remove"]:active,
 input[name="submit"]:active,
 input[name="save"]:active {
     background: #c7f516;
 }
 
+input[value="Add attachment"]:hover,
+input[name="remove"]:hover,
 input[name="submit"]:hover,
 input[name="save"]:hover {
     color: #222;
@@ -195,25 +212,25 @@ input[name="save"]:hover {
 #header h1 :link:hover, #header h1 :visited:hover { color: #000 }
 
 /* Quick search */
-#search, #topsearch {
+#search {
     float: right;
-    padding: 0.75em;
+    padding: 0.75em 0.75em 1.35em;
     margin-right: 1.5em;
 }
 
-#topsearch input[type=button],
-#topsearch input[type=submit],
-#topsearch input[type=reset],
-#topsearch input[type=text],
-#topsearch input.textwidget {
+#search input[type=button],
+#search input[type=submit],
+#search input[type=reset],
+#search input[type=text],
+#search input.textwidget {
     background-color: #222;
     color: #ddd;
     border-color: #666;
 }
 
-#topsearch input[type=button]:hover,
-#topsearch input[type=submit]:hover,
-#topsearch input[type=reset]:hover {
+#search input[type=button]:hover,
+#search input[type=submit]:hover,
+#search input[type=reset]:hover {
     color: #fff;
     border-color: #888;
     background-color: #2a2a2a;
@@ -226,39 +243,26 @@ input[name="save"]:hover {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 }
 
-#topsearch input[type=button]:active,
-#topsearch input[type=submit]:active,
-#topsearch input[type=reset]:active {
+#search input[type=button]:active,
+#search input[type=submit]:active,
+#search input[type=reset]:active {
     background: #222;
 }
 
-#topsearch input[type=text],
-#topsearch input.textwidget {
+#search input[type=text],
+#search input.textwidget {
     border-color: #444 #666 #666 #444;
 }
 
-#topsearch input[type=text]:focus,
-#topsearch input.textwidget:focus {
+#search input[type=text]:focus,
+#search input.textwidget:focus {
     border-color: #bce715;
     -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/*
-#search input,
-#search input[type=button],
-#search input[type=submit],
-#search input[type=reset],
-#search input[type=text],
-#search input.textwidget {
-    background-color: #383838;
-    color: #ffffff;
-    border: 1px solid #333333;
-}
-*/
-
-#search, #topsearch label { display: none }
+#search label { display: none }
 
 /* Navigation */
 .nav h2, .nav hr { display: none }
@@ -386,7 +390,7 @@ input[name="save"]:hover {
   font-size: 0.85em;
   background: #333;
   border-top: 0.5em solid #555;
-  padding: 2em 3em;
+  padding: 1.5em 3em;
 }
 #footer :link, #footer :visited { color: #bbb; }
 #footer hr { display: none }
@@ -394,6 +398,19 @@ input[name="save"]:hover {
 #footer #tracpowered:hover { background: transparent }
 #footer .credits p {
     margin: 0;
+}
+
+#footer .sitemeter {
+    float: right;
+}
+
+#footer .credits {
+    line-height: 2;
+    float: left;
+}
+
+#footer .right {
+    clear: both;
 }
 
 #content {
@@ -441,13 +458,15 @@ input[name="save"]:hover {
 
 /* Version information (browser, wiki, attachments) */
 #info {
- margin: 1em 0 0 0;
- background: #f7f7f0;
- border: 1px solid #d7d7d7;
- border-collapse: collapse;
- border-spacing: 0;
- clear: both;
- width: 100%;
+    margin: 1em 0 0 0;
+    background: #f7f7f0;
+    border: 1px solid #d7d7d7;
+    border-collapse: collapse;
+    border-spacing: 0;
+    clear: both;
+    position: absolute;
+    top: -4em;
+    z-index: 100;
 }
 #info th, #info td { font-size: 85%; padding: 2px .5em; vertical-align: top }
 #info th { font-weight: bold; text-align: left; white-space: nowrap }
@@ -496,33 +515,31 @@ table.wiki {
 table.wiki td { border: 1px solid #ccc;  padding: .1em .25em; }
 
 .wikitoolbar {
- border: solid #d7d7d7;
- border-width: 1px 1px 1px 0;
- height: 18px;
- width: 208px;
+    height: 18px;
+    padding: 0.5em 0;
 }
-.wikitoolbar :link, .wikitoolbar :visited {
- background: transparent url(../edit_toolbar.png) no-repeat;
- border: 1px solid #fff;
- border-left-color: #d7d7d7;
- cursor: default;
- display: block;
- float: left;
- width: 24px;
- height: 16px;
+#main .wikitoolbar :link, #main .wikitoolbar :visited {
+    background: transparent url(../edit_toolbar.png) no-repeat;
+    border: 1px solid #bbb;
+    border-radius: 0.15em;
+    display: block;
+    float: left;
+    width: 24px;
+    height: 16px;
+    margin: 0 0.25em 0 0;
 }
-.wikitoolbar :link:hover, .wikitoolbar :visited:hover {
- background-color: transparent;
- border: 1px solid #fb2;
+#main .wikitoolbar :link:hover, #main .wikitoolbar :visited:hover {
+    background-color: transparent;
+    border-color: #1d61be;
 }
-.wikitoolbar a#em { background-position: 0 0 }
-.wikitoolbar a#strong { background-position: 0 -16px }
-.wikitoolbar a#heading { background-position: 0 -32px }
-.wikitoolbar a#link { background-position: 0 -48px }
-.wikitoolbar a#code { background-position: 0 -64px }
-.wikitoolbar a#hr { background-position: 0 -80px }
-.wikitoolbar a#np { background-position: 0 -96px }
-.wikitoolbar a#br { background-position: 0 -112px }
+#main .wikitoolbar a#em { background-position: 0 0 }
+#main .wikitoolbar a#strong { background-position: 0 -16px }
+#main .wikitoolbar a#heading { background-position: 0 -32px }
+#main .wikitoolbar a#link { background-position: 0 -48px }
+#main .wikitoolbar a#code { background-position: 0 -64px }
+#main .wikitoolbar a#hr { background-position: 0 -80px }
+#main .wikitoolbar a#np { background-position: 0 -96px }
+#main .wikitoolbar a#br { background-position: 0 -112px }
 
 /* Styles for the form for adding attachments. */
 #attachment .field { margin-top: 1.3em }
