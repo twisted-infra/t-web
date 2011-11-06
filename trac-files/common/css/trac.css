@@ -715,14 +715,13 @@ div.system-message p.system-message-title { font-weight: bold; }
     background-image:      -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
     border-bottom: 2px solid #bce715;
     border-radius: 0 0 0.35em 0.35em;
-    padding: 2em;
+    padding: 1.5em;
     position: relative;
-    -moz-box-shadow: 0 0 0.5em rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 0 0 0.5em rgba(0, 0, 0, .5);
-    box-shadow: 0 0 0.5em rgba(0, 0, 0, .5);
-    margin-left: 1em;
+    -moz-box-shadow: 0 0 0.5em rgba(0, 0, 0, .65);
+    -webkit-box-shadow: 0 0 0.5em rgba(0, 0, 0, .65);
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, .65);
     margin-bottom: 3em;
-    margin-right: -4em;
+    margin-right: -3em;
 }
 
 #download h1, #download h2 {
@@ -743,7 +742,7 @@ div.system-message p.system-message-title { font-weight: bold; }
 #download ul {
     list-style: none;
     margin: 0.5em 0;
-    padding: 0 0.5em;
+    padding: 0;
 }
 
 #download a:link, #download a:visited {
@@ -775,11 +774,11 @@ pre.prettyprint {
 }
 
 .leftcol {
-    width: 20%;
+    width: 15%;
 }
 
 .leftcolcol {
-    padding: 0 2em 4em 2em;
+    padding: 0 1.5em 1.5em;
     background: #eee;
     border: 1px solid #d0d0d0;
     border-width: 0 1px 1px 0;
@@ -809,10 +808,9 @@ pre.prettyprint {
     -moz-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
     -webkit-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
     box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
-    padding: 2em;
+    padding: 1.5em;
     position: relative;
-    margin-left: -3em;
-    left: 4em;
+    margin-right: -3em;
 }
 
 .donations h2 {
