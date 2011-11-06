@@ -12,15 +12,16 @@
 #attachments,
 #changelog,
 #ticket {
-    background: #f9f9f9;
-    background: #f0f0f0;
-    background: #e7e7e7;
+    background: #fff;
     border-radius: 0.35em;
     padding: .5em 1em;
     border: none;
-    border-bottom: 2px solid #d5e791;
+    border: 1px solid #d0d0d0;
     border-bottom: 2px solid #83a501;
     margin-bottom: 1.5em;
+    -moz-box-shadow: 0 0.15em 0.25em rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 0.15em 0.25em rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.15em 0.25em rgba(0, 0, 0, 0.15);
 }
 
 #propertyform {
@@ -61,9 +62,7 @@ h1 .status { color: #444; }
     border-radius: 0.35em;
     table-layout: fixed;
     width: 100%;
-    background: #ecf1da;
-    background: #d0d0d0;
-    background: #fff;
+    background: #eee;
 }
 #ticket table.properties td, #ticket table.properties th {
  font-size: 0.875em;
@@ -95,38 +94,29 @@ h1 .status { color: #444; }
 
 
 #changelog {
-    background: #fff;
+    background: transparent;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
     padding: 0.35em 0 0;
     border: none;
 }
 #changelog .printableform {
     padding: 2em 1em;
+    border: 1px solid;
+    border-color: #ddd #aaa #aaa #ddd;
     border-radius: 0.35em;
-    /*border-top: 2px solid #d0d0d0;*/
-    /*margin-top: -0.5em;*/
-    border: 1px solid #ccc;
     margin-top: 1em;
-
     position: relative;
-    xoverflow: hidden;
-}
-#changelog .printableform:nth-child(2n) {
-    background: #ecf1da;
-    background: #e7e7e7;
-    border: 0 solid #bbb;
-    border-width: 0 0 2px 0;
-}
-/*
-#changelog .printableform:nth-child(2n+1) {
-    background: #f9f9f9;
     background: #fff;
 }
-*/
+#changelog .printableform:nth-child(2n) {
+    background: #e7e7e7;
+}
 
 #preview { border: 1px solid #d7d7d7; padding: 1em }
 #preview h3, #changelog h3 {
     font-size: 100%;
-    /*font-weight: normal;*/
     padding: 0;
 }
 .threading { float: right; font-size: 90%; }
@@ -176,7 +166,6 @@ fieldset.radio label { padding-right: 1em }
     vertical-align: middle;
     border-bottom: 2px solid #444;
     border-radius: 0.35em;
-
     float: right;
     margin: -0.35em 0.5em 0 0;
 }

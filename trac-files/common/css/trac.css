@@ -160,7 +160,6 @@ fieldset.iefix p { margin: 0 }
 legend {
     color: #444;
     padding: 0 .25em;
-    xfont-size: 90%;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -321,13 +320,9 @@ input[name="save"]:hover {
  color: #eee;
  font-weight: bold;
 }
-#mainnav .active :link:hover, #mainnav .active :visited:hover {
- /*
- border-right: 1px solid #000;
- */
-}
 
 #main {
+    background: #fff url(../bg.png);
     clear: both;
 }
 
@@ -414,7 +409,7 @@ input[name="save"]:hover {
 }
 
 #content {
-    padding: 0 4em;
+    padding: 0 4em 4em;
     position: relative;
 }
 
@@ -722,9 +717,9 @@ div.system-message p.system-message-title { font-weight: bold; }
     border-radius: 0 0 0.35em 0.35em;
     padding: 2em;
     position: relative;
-    -moz-box-shadow: 0 0 0.5em #222;
-    -webkit-box-shadow: 0 0 0.5em #222;
-    box-shadow: 0 0 0.5em #222;
+    -moz-box-shadow: 0 0 0.5em rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 0 0.5em rgba(0, 0, 0, .5);
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, .5);
     margin-left: 1em;
     margin-bottom: 3em;
     margin-right: -4em;
@@ -803,11 +798,17 @@ pre.prettyprint {
     padding: 0.5em 0;
 }
 
+#main .twisted-sponsors a.anchor:link {
+    display: inline;
+}
+
 .donations {
     background: none repeat scroll 0 0 white;
     border: 1px solid #ddd;
     border-radius: 0.35em 0.35em 0.35em 0.35em;
-    box-shadow: 0 0 0.5em #bbb;
+    -moz-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
     padding: 2em;
     position: relative;
     margin-left: -3em;
