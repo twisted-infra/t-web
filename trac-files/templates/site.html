@@ -54,11 +54,15 @@
 
     <!--! A more structured form of the ticket resolution, status and type attributes -->
     <div py:match="div[@id='content' and @class='ticket']" py:attrs="select('@*')">
-        <span py:strip="True" py:match="span[@class='status']">
-            <py:if test="ticket.resolution"><span class="resolution">${ticket.resolution}</span></py:if>
-            <py:if test="ticket.status"><span class="status">${ticket.status}</span></py:if>
+        <span class="statuses" py:match="span[@class='status']">
             <py:if test="ticket.type"><span class="type">${ticket.type}</span></py:if>
+            <py:if test="ticket.status"><span class="status">${ticket.status}</span></py:if>
+            <py:if test="ticket.resolution"><span class="resolution">${ticket.resolution}</span></py:if>
         </span>
+        <h1 py:match="h1">
+            <span class="title">${select('text()')}</span>
+            ${select('*|comment()')}
+        </h1>
         ${select('*|comment()|text()')}
     </div>
 
