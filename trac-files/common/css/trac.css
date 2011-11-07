@@ -326,8 +326,14 @@ input[name="save"]:hover {
     clear: both;
 }
 
-#main :link, #content :visited {
-    border-bottom: 1px dotted #bbb;
+#content.ticket a:link, #content.ticket a:visited,
+.attachment a:link, .attachment a:link,
+.wiki a:link, .wiki a:visited {
+    text-decoration: underline;
+}
+
+.timeline a:link, .timeline a:visited {
+    text-decoration: none;
 }
 
 /* Context-dependent navigation links */
