@@ -165,11 +165,11 @@ table.code tbody td {
 /* @import url(code.css); */
 
 h1 .numrows, h2 .numrows {
- margin-left: 1em;
- color: #777;
- font-size: 65%;
- font-weight: normal;
- vertical-align: middle;
+    margin-left: 1em;
+    color: #777;
+    font-size: 65%;
+    vertical-align: middle;
+    text-transform: uppercase;
 }
 #report-descr { margin: 0 2em; font-size: 90% }
 #report-notfound { margin: 2em; font-size: 110% }
