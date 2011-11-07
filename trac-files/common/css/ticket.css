@@ -15,7 +15,6 @@
     background: #fff;
     border-radius: 0.35em;
     padding: .5em 1em;
-    border: none;
     border: 1px solid #d0d0d0;
     border-bottom: 2px solid #83a501;
     margin-bottom: 1.5em;
@@ -141,7 +140,7 @@ form .field .wikitoolbar { margin-left: -1px }
 #properties table td.fullrow { vertical-align: middle; width: 80% }
 
 #properties table tr:nth-child(2n) {
-    background-color: #eee;
+    background-color: #e6e6e6;
 }
 
 #action { line-height: 2em }
