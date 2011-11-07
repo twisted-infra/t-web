@@ -540,12 +540,23 @@ table.wiki td { border: 1px solid #ccc;  padding: .1em .25em; }
 #main .wikitoolbar a#br { background-position: 0 -112px }
 
 /* Styles for the form for adding attachments. */
+#attachment {
+    background: #fff;
+    border-radius: 0.35em;
+    padding: .5em 1em;
+    border: 1px solid #d0d0d0;
+    border-bottom: 2px solid #83a501;
+    margin-bottom: 1.5em;
+    -moz-box-shadow: 0 0.15em 0.25em rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 0.15em 0.25em rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.15em 0.25em rgba(0, 0, 0, 0.15);
+}
 #attachment .field { margin-top: 1.3em }
 #attachment label { padding-left: .2em }
 #attachment fieldset { margin-top: 2em }
 #attachment fieldset .field { float: left; margin: 0 1em .5em 0 }
 #attachment .options { float: left; padding: 0 0 1em 1em }
-#attachment br { clear: left }
+#attachment br { display: block; clear: left }
 .attachment #preview { margin-top: 1em }
 
 /* Styles for the list of attachments. */
@@ -767,6 +778,7 @@ div.system-message p.system-message-title { font-weight: bold; }
     background: transparent;
     color: #bce715;
     border: none;
+    text-decoration: none;
 }
 
 #download a:hover {
