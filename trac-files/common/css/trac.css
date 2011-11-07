@@ -786,6 +786,7 @@ div.system-message p.system-message-title { font-weight: bold; }
 #download a:link, #download a:visited {
     display: block;
     padding: 0.25em 1em;
+    margin: 0 -.5em;
     background: transparent;
     color: #bce715;
     border: none;
