@@ -166,15 +166,10 @@ table.code tbody td {
 
 h1 .numrows, h2 .numrows {
  margin-left: 1em;
- color: #999; 
- font-size: 65%; 
- font-weight: normal; 
-}
-h2 {
- background: #f7f7f7;
- border-bottom: 1px solid #d7d7d7;
- margin: 2em 0 0;
- padding: 0 .33em;
+ color: #777;
+ font-size: 65%;
+ font-weight: normal;
+ vertical-align: middle;
 }
 #report-descr { margin: 0 2em; font-size: 90% }
 #report-notfound { margin: 2em; font-size: 110% }
@@ -205,7 +200,6 @@ h2 {
 .tickets tbody td :link, .tickets tbody td :visited { display: block }
 .tickets { border-bottom: none }
 .tickets thead th { text-transform: capitalize; white-space: nowrap; }
-.tickets tbody td, .reports tbody td { padding: .1em .5em !important }
 .tickets tbody td a, .reports tbody td a { border-bottom: none }
 .tickets tbody td.id :link, .tickets tbody td.id :visited {
  font-weight: bold;

@@ -554,27 +554,31 @@ table.wiki td { border: 1px solid #ccc;  padding: .1em .25em; }
 /* Styles for tabular listings such as those used for displaying directory
    contents and report results. */
 table.listing {
- clear: both;
- border-bottom: 1px solid #d7d7d7;
- border-collapse: collapse;
- border-spacing: 0;
- margin-top: 1em;
- width: 100%;
+    clear: both;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    margin-top: 1em;
+    padding: 0.5em;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 0.25em 0.15em rgba(0, 0, 0, 0.15);
 }
-table.listing th { text-align: left; padding: 0 1em .1em 0; font-size: 12px }
-table.listing thead { background: #f7f7f0 }
+table.listing th {
+    text-align: left;
+    padding: 0;
+}
 table.listing thead th {
- border: 1px solid #d7d7d7;
- border-bottom-color: #999;
- font-size: 11px;
- font-weight: bold;
- padding: 2px .5em;
- vertical-align: bottom;
+    border: none;
+    border-bottom: 2px solid #164b93;
 }
-table.listing thead th :link:hover, table.listing thead th :visited:hover {
- background-color: transparent;
+table.listing thead th :link:hover,
+table.listing thead th :visited:hover {
+    background-color: transparent;
 }
-table.listing thead th a { border: none; padding-right: 12px }
+table.listing thead th a {
+    display: block;
+    padding: 0.8em 1em;
+}
 table.listing th.asc a, table.listing th.desc a { font-weight: bold }
 table.listing th.asc a, table.listing th.desc a {
  background-position: 100% 50%;
@@ -583,17 +587,26 @@ table.listing th.asc a, table.listing th.desc a {
 table.listing th.asc a { background-image: url(../asc.png) }
 table.listing th.desc a { background-image: url(../desc.png) }
 table.listing tbody td, table.listing tbody th {
- border: 1px dotted #ddd;
- padding: .33em .5em;
- vertical-align: top;
+    padding: 0;
+    vertical-align: middle;
+    padding: 0.6em 1em;
 }
+table.listing tbody td a {
+    margin: -0.6em -1em;
+    padding: 0.6em 1em;
+    display: block;
+}
+
+table.listing tbody td {
+    border-bottom: 1px solid #ccc;
+}
+
 table.listing tbody td a:hover, table.listing tbody th a:hover {
  background-color: transparent;
 }
-table.listing tbody tr { border-top: 1px solid #ddd }
 table.listing tbody tr.even { background-color: #fcfcfc }
 table.listing tbody tr.odd { background-color: #f7f7f7 }
-table.listing tbody tr:hover { background: #eed !important }
+table.listing tbody tr:hover { background: #dfe9f6 !important }
 
 /* Styles for the error page (and rst errors) */
 #content.error .message, div.system-message {
