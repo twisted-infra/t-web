@@ -27,11 +27,6 @@ p.percent { font-size: 10px; line-height: 2.4em; margin: 0.9em 0 0 }
 ul.milestones { margin: 2em 0 0; padding: 0 }
 li.milestone { list-style: none; margin-bottom: 4em }
 .milestone .info { white-space: nowrap }
-.milestone .info h2 {
- background: #f7f7f7;
- border-bottom: 1px solid #d7d7d7;
- margin: 0;
-}
 .milestone .info h2 :link, .milestone .info h2 :visited {
  color: #000;
  display: block;
