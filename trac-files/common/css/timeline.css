@@ -4,12 +4,6 @@
 #prefs fieldset label { display: block }
 #prefs .buttons { margin-top: -1.6em }
 
-h2 {
- background: #f7f7f7;
- border-bottom: 1px solid #d7d7d7;
- font-size: 105%;
- margin: 2em 0 .5em;
-}
 dl { line-height: 1.3em; margin-left: 1em }
 dt { background: 3px 4px no-repeat; padding: 0 }
 dt :link, dt :visited {
@@ -23,10 +17,13 @@ dt>:link, dt>:visited {
  background-position: 3px 4px;
  display: block;
 }
-dt :link:hover, dt :visited:hover { background-color: #eed; color: #000 }
+dt :link:hover, dt :visited:hover {
+    background-color: #dfe9f6;
+    color: #000;
+}
 dt em {
  border-bottom: 1px dotted #bbb;
- color: #517489;
+ color: #1d61be;
  font-style: normal;
  text-decoration: none;
 }
