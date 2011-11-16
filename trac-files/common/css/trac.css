@@ -36,8 +36,8 @@ pre {
 
 /* Link styles */
 :link, :visited {
- text-decoration: none;
- color: #1d61be;
+    /*text-decoration: none;*/
+    color: #1d61be;
 }
 :link:hover, :visited:hover {
  background-color: transparent;
@@ -65,11 +65,13 @@ h4:hover .anchor, h5:hover .anchor, h6:hover .anchor {
 }
 
 @media screen {
- a.ext-link .icon {
-  background: url(../extlink.gif) left center no-repeat;
-  padding-left: 16px;
- }
- * html a.ext-link .icon { display: inline-block; }
+    a.ext-link .icon {
+        background: url(../extlink.gif) left center no-repeat;
+        padding-left: 16px;
+        display: inline-block;
+        width: 0;
+    }
+    * html a.ext-link .icon { display: inline-block; }
 }
 
 /* Forms */
@@ -294,21 +296,21 @@ input[name="save"]:hover {
 }
 #mainnav ul {
     border-top: 1px solid #222;
-    padding: 0.25em 0;
+    padding: 0.3em 0;
 }
 #mainnav li {
-    padding: .25em 0;
+    padding: 0.3em 0;
 }
 #mainnav :link, #mainnav :visited {
- background: url(../dots.gif) 0 0 no-repeat;
- border: none;
- color: #eee;
- padding: .3em 20px; /* Modified */
+    background: url(../dots.gif) 0 0 no-repeat;
+    border: none;
+    color: #eee;
+    padding: 0.3em 1.6em;
 }
 #mainnav :link:hover, #mainnav :visited:hover {
- color: #eee;
- background-color: #444444; /* Modified */
- border-right: 0px solid #ddd; /* Modified */
+    color: #eee;
+    background-color: #444;
+    z-index: -1;
 }
 #mainnav .active {
     position: relative;
@@ -318,10 +320,10 @@ input[name="save"]:hover {
     border-bottom: 4px solid #bce715;
 }
 #mainnav .active :link, #mainnav .active :visited {
- background: #444444 0 0 repeat-x; /* Modified */
- border-bottom: 1px solid transparent;
- color: #eee;
- font-weight: bold;
+    background: #444;
+    border-bottom: 1px solid transparent;
+    color: #eee;
+    font-weight: bold;
 }
 
 #main {
@@ -329,12 +331,17 @@ input[name="save"]:hover {
     clear: both;
 }
 
+/*
 #content.ticket a:link, #content.ticket a:visited,
 .attachment a:link, .attachment a:link,
 .wiki a:link, .wiki a:visited {
     text-decoration: underline;
 }
+*/
 
+#banner a:link, #banner a:visited,
+#mainnav a:link, #mainnav a:visited,
+#ctxtnav a:link, #ctxtnav a:visited,
 .timeline a:link, .timeline a:visited {
     text-decoration: none;
 }
@@ -467,12 +474,15 @@ input[name="save"]:hover {
 #info {
     margin: 1em 0 0 0;
     background: #f7f7f0;
-    border: 1px solid #d7d7d7;
+    border: 1px solid #83a501;
     border-collapse: collapse;
     border-spacing: 0;
     clear: both;
     position: absolute;
     top: -4em;
+    -moz-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
     z-index: 100;
 }
 #info th, #info td { font-size: 85%; padding: 2px .5em; vertical-align: top }
@@ -585,6 +595,8 @@ table.listing {
     padding: 0.5em;
     width: 100%;
     background: #fff;
+    -moz-box-shadow: 0 0.25em 0.15em rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 0.25em 0.15em rgba(0, 0, 0, 0.15);
     box-shadow: 0 0.25em 0.15em rgba(0, 0, 0, 0.15);
 }
 table.listing th {
@@ -636,11 +648,14 @@ table.listing tbody tr:hover { background: #dfe9f6 !important }
 
 /* Styles for the error page (and rst errors) */
 #content.error .message, div.system-message {
- background: #fdc;
- border: 2px solid #d00;
- color: #500;
- padding: .5em;
- margin: 1em 0;
+    background: #fdc;
+    border: 2px solid #d00;
+    color: #500;
+    padding: .5em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
 }
 #content.error pre, div.system-message pre { margin-left: 1em; overflow: auto }
 div.system-message p { margin: 0; }
@@ -675,6 +690,7 @@ div.system-message p.system-message-title { font-weight: bold; }
     background-image:    -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
     background-image:     -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
     background-image:      -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
+    background-image:         linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
     float: right;
     border: 0 solid #d1fd26;
     border-width: 0 0 1px 1px;
@@ -752,8 +768,8 @@ div.system-message p.system-message-title { font-weight: bold; }
     background-image:     -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
     background-image:      -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .3));
     border-bottom: 2px solid #bce715;
-    border-radius: 0 0 0.35em 0.35em;
-    padding: 1.5em;
+    border-radius: 0.35em;
+    padding: 2em;
     position: relative;
     -moz-box-shadow: 0 0 0.5em rgba(0, 0, 0, .65);
     -webkit-box-shadow: 0 0 0.5em rgba(0, 0, 0, .65);
@@ -762,18 +778,21 @@ div.system-message p.system-message-title { font-weight: bold; }
     margin-right: -3em;
 }
 
+#download > p {
+    margin: 0;
+}
+
 #download h1, #download h2 {
     color: #eee;
+    text-shadow: 0 1px #222;
 }
 
 #download h1 {
     padding-top: 0;
-    text-shadow: 0 -1px #222;
 }
 
 #download h2 {
     color: #bbb;
-    text-shadow: 0 -1px #222;
     padding: 0;
 }
 
@@ -796,7 +815,6 @@ div.system-message p.system-message-title { font-weight: bold; }
 #download a:hover {
     background: #bce715;
     color: #444;
-    border-radius: 0 0.35em;
 }
 
 #download a.anchor {
@@ -810,24 +828,35 @@ pre.prettyprint {
 
 .column-layout {
     width: 100%;
-    margin: -2.5em -4em 0;
+    margin: 0 -4em;
 }
 
 .leftcol {
     width: 15%;
 }
 
+/* IE7 hacks. */
+.leftcol {
+    *display: block;
+    *float: left;
+}
+
 .leftcolcol {
-    padding: 0 1.5em 1.5em;
-    background: #eee;
-    border: 1px solid #d0d0d0;
+    padding: 1.5em;
     border-width: 0 1px 1px 0;
+    margin-top: -1.25em;
     margin-right: 2em;
     border-radius: 0 0 0.35em 0;
 }
 
 .centercol {
     padding: 0 2em;
+}
+
+/* IE7 hacks. */
+.centercol {
+    *display: block;
+    *float: left;
 }
 
 #main .twisted-sponsors a:link {
@@ -842,13 +871,13 @@ pre.prettyprint {
 }
 
 .donations {
-    background: none repeat scroll 0 0 white;
-    border: 1px solid #ddd;
-    border-radius: 0.35em 0.35em 0.35em 0.35em;
-    -moz-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
-    -webkit-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
-    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
-    padding: 1.5em;
+    background: #eee;
+    border: 1px solid #d0d0d0;
+    border-radius: 0.35em;
+    -moz-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.075);
+    -webkit-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.075);
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.075);
+    padding: 2em;
     position: relative;
     margin-right: -3em;
 }
@@ -856,10 +885,16 @@ pre.prettyprint {
 .donations h2 {
     padding-top: 0;
     color: #1d61be;
+    text-shadow: 0 1px #fff;
 }
 
 .donations p {
     margin-top: 0;
+}
+
+.donation-buttons {
+    width: 210px;
+    text-align: center;
 }
 
 .book-image {
