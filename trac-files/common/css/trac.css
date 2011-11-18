@@ -906,11 +906,6 @@ pre.prettyprint {
     text-align: center;
 }
 
-.book-image {
-    float: right;
-    margin-top: -95px;
-}
-
 .wikipage div.code pre {
     background: transparent;
 }
