@@ -907,8 +907,8 @@ pre.prettyprint {
 }
 
 .book-image {
-    display: block;
-    margin: auto;
+    float: right;
+    margin-top: -95px;
 }
 
 .wikipage div.code pre {
