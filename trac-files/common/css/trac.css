@@ -35,33 +35,38 @@ pre {
 }
 
 /* Link styles */
-:link, :visited {
-    /*text-decoration: none;*/
+:link {
     color: #1d61be;
 }
+:visited {
+    color: #4a1dbe;
+}
+:link:active, :visited:active {
+    color: #14417E;
+}
 :link:hover, :visited:hover {
- background-color: transparent;
- color: #555;
- color: #be1d1d;
+    background-color: transparent;
+    text-decoration: none;
 }
 h1 :link, h1 :visited ,h2 :link, h2 :visited, h3 :link, h3 :visited,
 h4 :link, h4 :visited, h5 :link, h5 :visited, h6 :link, h6 :visited {
- color: inherit;
+    color: inherit;
 }
 
 /* Heading anchors */
 .anchor:link, .anchor:visited {
- border: none;
- color: #d7d7d7;
- font-size: .8em;
- vertical-align: text-top;
+    border: none;
+    color: #d7d7d7;
+    font-size: 0.8725em;
+    vertical-align: text-top;
+    text-decoration: none;
 }
 * > .anchor:link, * > .anchor:visited {
- visibility: hidden;
+    visibility: hidden;
 }
 h1:hover .anchor, h2:hover .anchor, h3:hover .anchor,
 h4:hover .anchor, h5:hover .anchor, h6:hover .anchor {
- visibility: visible;
+    visibility: visible;
 }
 
 @media screen {
