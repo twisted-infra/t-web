@@ -910,6 +910,17 @@ pre.prettyprint {
 .twisted-news > p {
     margin: 0;
 }
+.twisted-news .feed-updated {
+    font-size: 0.75em;
+    text-align: right;
+}
+.twisted-news .feed-entry {
+    padding: 0.5em;
+    margin: 0 -0.5em;
+}
+.twisted-news .feed-entry:nth-child(2n) {
+    background: rgba(0, 0, 0, 0.05);
+}
 
 .donations p {
     margin-top: 0;
@@ -921,4 +932,9 @@ pre.prettyprint {
 
 .wikipage div.code pre {
     background: transparent;
+}
+
+.throbber {
+    display: block;
+    margin: auto;
 }
