@@ -666,14 +666,17 @@ table.listing tbody tr:hover { background: #dfe9f6 !important }
     border: 2px solid #d00;
     color: #500;
     padding: .5em;
+}
+#content.error pre, div.system-message pre { margin-left: 1em; overflow: auto }
+div.system-message p { margin: 0; }
+div.system-message p.system-message-title { font-weight: bold; }
+
+#warning.system-message {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 100;
 }
-#content.error pre, div.system-message pre { margin-left: 1em; overflow: auto }
-div.system-message p { margin: 0; }
-div.system-message p.system-message-title { font-weight: bold; }
 
 /* Styles for search word highlighting */
 @media screen {
@@ -884,7 +887,7 @@ pre.prettyprint {
     display: inline;
 }
 
-.donations {
+.side-panel {
     background: #eee;
     border: 1px solid #d0d0d0;
     border-radius: 0.35em;
@@ -895,17 +898,22 @@ pre.prettyprint {
     position: relative;
     margin-right: -3em;
 }
-
-.donations h2 {
+.side-panel h2 {
     padding-top: 0;
     color: #1d61be;
     text-shadow: 0 1px #fff;
 }
 
+.twisted-news {
+    margin-bottom: 3em;
+}
+.twisted-news > p {
+    margin: 0;
+}
+
 .donations p {
     margin-top: 0;
 }
-
 .donation-buttons {
     width: 210px;
     text-align: center;
