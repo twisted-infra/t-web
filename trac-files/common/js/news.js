@@ -59,16 +59,17 @@ function removeNodeContent(node) {
  * into the "twisted-news" element, if it exists.
  */
 function loadNewsFeeds() {
+    var container = document.getElementById('twisted-news');
+    // Bail out if there is no news element.
+    if (!container) {
+        return;
+    }
+
     var feed = new google.feeds.Feed(
         'http://feeds.feedburner.com/TwistedMatrixLaboratories');
     feed.setNumEntries(5);
     feed.load(function(result) {
         if (!result.error) {
-            var container = document.getElementById('twisted-news');
-            // Bail out if there is no news element.
-            if (!container) {
-                return;
-            }
             removeNodeContent(container);
             var D = DOMBuilder(container.ownerDocument);
             for (var i = 0; i < result.feed.entries.length; i++) {
