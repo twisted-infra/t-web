@@ -64,7 +64,7 @@ div.message div.inlinebuttons { float: right;  }
  font-size: 70%;
 }
 #dirlist td.age {
- border-width: 0 2px 0 0;
+ border-width: 0 0 2px;
  border-style: solid;
  font-size: 85%;
 }
