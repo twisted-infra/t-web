@@ -626,11 +626,6 @@ table.listing thead th :link:hover,
 table.listing thead th :visited:hover {
     background-color: transparent;
 }
-table.listing thead th a {
-    display: block;
-    margin: -0.8em -1em;
-    padding: 0.8em 1em;
-}
 table.listing th.asc a, table.listing th.desc a { font-weight: bold }
 table.listing th.asc a, table.listing th.desc a {
  background-position: 100% 50%;
@@ -638,21 +633,14 @@ table.listing th.asc a, table.listing th.desc a {
 }
 table.listing th.asc a { background-image: url(../asc.png) }
 table.listing th.desc a { background-image: url(../desc.png) }
-table.listing tbody td, table.listing tbody th {
-    padding: 0;
+table.listing tbody td,
+table.listing tbody th {
     vertical-align: middle;
-    padding: 0.6em 1em;
 }
-table.listing tbody td a {
-    margin: -0.6em -1em;
-    padding: 0.6em 1em;
-    display: block;
-}
-
 table.listing tbody td {
     border-bottom: 1px solid #ccc;
+    padding: 0.6em 1em;
 }
-
 table.listing tbody td a:hover, table.listing tbody th a:hover {
  background-color: transparent;
 }
