@@ -11,6 +11,7 @@ Disallow: /trac/query
 Disallow: /trac/timeline
 Disallow: /trac/newticket
 Disallow: /trac/search
+Disallow: /trac/diff
 
 User-agent: Googlebot
 Disallow: /users/gus.twistd/checkin/
@@ -27,3 +28,4 @@ Disallow: /trac/newticket
 Allow:    /projects/*/documentation/
 Disallow: /projects/
 Disallow: /trac/search
+Disallow: /trac/diff
