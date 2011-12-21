@@ -7,7 +7,11 @@ rundir=$HOME/Run/$WEBSITE_NAME/
 file=$WEBSITE_ROOT/twisted-web/twisted-web
 logfile=$HOME/Run/$WEBSITE_NAME/twisted-web.log
 more_args=--no_save
-twistd=$HOME/.local/bin/twistd
+
+#twistd=$HOME/.local/bin/twistd
+
+unset PYTHONPATH
+twistd=/srv/pypy/bin/twistd
 
 [ -r $WEBSITE_ROOT/default/twisted-web ] && . $WEBSITE_ROOT/default/twisted-web
 
