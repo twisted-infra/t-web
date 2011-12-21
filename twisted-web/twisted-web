@@ -159,7 +159,7 @@ logPath = '/srv/www-data/Run/twisted-web/httpd.log'
 # Add a rule to rewrite /~foo/bar.html to /usrs/foo/bar.html
 # so that the classical user URLs will work.
 
-top = rewrite.RewriterResource(root, rewrite.tildeToUsers, rewrite.alias("highscores", "users/glyph.twistd"))
+top = rewrite.RewriterResource(root, rewrite.tildeToUsers, rewrite.alias("highscores", "users/highscore.twistd"))
 
 # Generate the Site factory. You will not normally
 # want to modify this line.
