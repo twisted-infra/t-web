@@ -19,5 +19,7 @@
 .hide{display:none;}
 .show{display:block;}
 .invisible{visibility:hidden;}
-ul#frontpage-tabs {padding: 0;}
-.tab-content {padding: 0 1em;}
+ul#frontpage-tabs{padding: 0;}
+.tab-content{padding: 0 1em;}
+#frontpage-tabs li{padding: 0;}
+#frontpage-tabs li a{text-decoration: none;}
