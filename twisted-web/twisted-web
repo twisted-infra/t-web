@@ -16,7 +16,7 @@ from twisted.python import filepath
 import sys
 sys.path.append('/srv/www-data/website/twisted-web')
 from moved import Moved
-
+from frackresource import getFrackResource
 
 class BugsRedirect(twutil.Redirect):
     isLeaf = False
@@ -111,6 +111,9 @@ projects.putChild("index.html", Moved('http://twistedmatrix.com/trac/wiki/Twiste
 
 for project in "conch", "core", "flow", "lore", "mail", "names", "news", "pair", "runner", "web", "web2", "words":
     projects.putChild(project, Moved('http://twistedmatrix.com/trac/wiki/Twisted' + project.title()))
+
+# Frack is the future.
+tm.putChild('frack', getFrackResource())
 
 # projects.processors = processors
 # projects.ignoreExt('.rpy')
