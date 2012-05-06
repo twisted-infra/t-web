@@ -1,6 +1,6 @@
 import urlparse
 
-from twisted.internet.endpoints import UNIXStreamClient
+from twisted.internet.endpoints import UNIXClientEndpoint
 from twisted.web.resource import Resource
 from twisted.web.proxy import ProxyClientFactory
 from twisted.web.server import NOT_DONE_YET
@@ -67,4 +67,4 @@ class ReverseProxyResource(Resource):
 
 def getFrackResource(reactor):
     return ReverseProxyResource(
-        UNIXStreamClient(reactor, '/var/run/frack/json.sock', checkPID=True))
+        UNIXClientEndpoint(reactor, '/var/run/frack/json.sock', checkPID=True))
