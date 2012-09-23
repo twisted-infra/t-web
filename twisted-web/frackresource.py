@@ -4,6 +4,8 @@ from twisted.internet.endpoints import UNIXClientEndpoint
 from twisted.web.resource import Resource
 from twisted.web.proxy import ProxyClientFactory
 from twisted.web.server import NOT_DONE_YET
+from twisted.python.urlpath import URLPath
+from twisted.python.log import err
 
 class ReverseProxyResource(Resource):
     """
@@ -51,20 +53,20 @@ class ReverseProxyResource(Resource):
         """
         Render a request by forwarding it to the proxied server.
         """
-        request.received_headers['host'] = self.host
+        request.received_headers['host'] = 'twistedmatrix.com'
         request.content.seek(0, 0)
-        qs = urlparse.urlparse(request.uri)[4]
-        if qs:
-            rest = str(self.uri) + '?' + qs
-        else:
-            rest = str(self.uri)
+        rest = '/frack/'
         clientFactory = self.proxyClientFactoryClass(
             request.method, rest, request.clientproto,
             request.getAllHeaders(), request.content.read(), request)
         d = self.endpoint.connect(clientFactory)
-        d.addErrback(lambda reason: clientFactory.clientConnectionFailed(None, reason))
+        d.addErrback(
+            lambda reason:
+                (err(reason, "Frack Proxy Connection Error"),
+                 clientFactory.clientConnectionFailed(None, reason)))
         return NOT_DONE_YET
 
 def getFrackResource(reactor):
     return ReverseProxyResource(
-        UNIXClientEndpoint(reactor, '/var/run/frack/json.sock', checkPID=True))
+        UNIXClientEndpoint(reactor, path='/var/run/frack/json.sock'),
+        URLPath("http://twistedmatrix.com/"))
