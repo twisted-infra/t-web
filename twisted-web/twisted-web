@@ -56,7 +56,7 @@ for file in vhostDir.children():
     root.addHost('www.' + file.basename(), r)
 
 root.default = root.hosts['twistedmatrix.com']
-root.hosts['www.twistedmatrix.com'] = twutil.ChildRedirector('http://twistedmatrix.com/trac/')
+root.hosts['www.twistedmatrix.com'] = twutil.ChildRedirector('http://twistedmatrix.com/')
 tm = root.default
 
 tm.putChild('', twutil.Redirect('http://twistedmatrix.com/trac/'))
@@ -113,7 +113,7 @@ for project in "conch", "core", "flow", "lore", "mail", "names", "news", "pair",
     projects.putChild(project, Moved('http://twistedmatrix.com/trac/wiki/Twisted' + project.title()))
 
 # Frack is the future.
-tm.putChild('frack', getFrackResource())
+tm.putChild('frack', getFrackResource(reactor))
 
 # projects.processors = processors
 # projects.ignoreExt('.rpy')
