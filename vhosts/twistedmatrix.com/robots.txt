@@ -5,27 +5,14 @@ Disallow: /~gus.twistd/checkin/
 Disallow: /~gus/checkin/
 Disallow: /trac/log
 Disallow: /trac/changeset
-Disallow: /trac/browser/branches
-Disallow: /trac/browser/tags
+Disallow: /trac/browser
 Disallow: /trac/query
+Disallow: /trac/report
 Disallow: /trac/timeline
 Disallow: /trac/newticket
 Disallow: /trac/search
 Disallow: /trac/diff
-
-User-agent: Googlebot
-Disallow: /users/gus.twistd/checkin/
-Disallow: /users/gus/checkin/
-Disallow: /~gus.twistd/checkin/
-Disallow: /~gus/checkin/
-Disallow: /trac/log
-Disallow: /trac/changeset
-Disallow: /trac/browser/branches
-Disallow: /trac/browser/tags
-Disallow: /trac/query
-Disallow: /trac/timeline
-Disallow: /trac/newticket
-Allow:    /projects/*/documentation/
 Disallow: /projects/
-Disallow: /trac/search
-Disallow: /trac/diff
+
+User-agent: AhrefsBot
+Disallow: /
