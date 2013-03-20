@@ -74,19 +74,11 @@ root.putChild('cgi-bin', twcgi.CGIDirectory('/usr/lib/cgi-bin'))
 ### BuildBot
 ###
 
-# These are only on (www.)twistedmatrix.com
-buildbotPort = '/srv/bb-master/.twistd-web-pb'
-buildbot = distrib.ResourceSubscription('unix', buildbotPort)
-supported = distrib.ResourceSubscription('unix', buildbotPort + '-supported')
+root.addHost('buildbot.twistedmatrix.com', proxy.ReverseProxyResource('localhost', 8080, ''))
 
 # These old names shouldn't be used anymore.  Just redirect to the new locations for a while.
 tm.putChild('buildbot', twutil.Redirect('http://buildbot.twistedmatrix.com/waterfall'))
 tm.putChild('buildbot-supported', twutil.Redirect('http://buildbot.twistedmatrix.com/supported?branch=trunk'))
-
-# Better BuildBot stuff - above is legacy
-buildbot = distrib.ResourceSubscription(
-    'unix', '/srv/bb-master/webstatus.twistd-web-pb')
-root.addHost('buildbot.twistedmatrix.com', buildbot)
 
 ###
 ### Codespeed Speedcenter
