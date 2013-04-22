@@ -1,2 +1,1 @@
 tcp:80
-ssl:443:privateKey=/srv/www-data/ssl/twistedmatrix.com.key:certKey=/srv/www-data/ssl/twistedmatrix.com.crt
