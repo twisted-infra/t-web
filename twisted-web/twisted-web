@@ -14,7 +14,7 @@ from twisted.internet.endpoints import serverFromString
 from twisted.python import filepath
 
 import sys
-sys.path.append('/srv/www-data/website/twisted-web')
+sys.path.append('/srv/t-web/config/twisted-web')
 from moved import Moved
 from frackresource import getFrackResource
 
