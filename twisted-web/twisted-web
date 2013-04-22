@@ -156,7 +156,7 @@ root.addHost("dancingsausage.net", dsroot)
 # This absolute path is extremely obnoxious.  Why can't I just say
 # "httpd.log"?  The working directory when it is interpreted seems to be
 # wrong. -exarkun
-logPath = '/srv/www-data/Run/twisted-web/httpd.log'
+logPath = '/srv/t-web/log/httpd.log'
 
 
 # Add a rule to rewrite /~foo/bar.html to /usrs/foo/bar.html
@@ -182,7 +182,7 @@ from twisted.python.log import ILogObserver, FileLogObserver
 from twisted.python.logfile import LogFile
 application.setComponent(
     ILogObserver,
-    FileLogObserver(LogFile("twisted-web.log", "/srv/www-data/Run/twisted-web", maxRotatedFiles=10)).emit)
+    FileLogObserver(LogFile("twistd.log", "/srv/t-web/log", maxRotatedFiles=10)).emit)
 
 # Listen on all ports specified:
 portPath = websiteRoot.child('twisted-web').child('ports')
