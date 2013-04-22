@@ -170,8 +170,8 @@ site = server.Site(top, logPath=logPath)
 
 # Set user/group to run under
 # Usually, it runs under the www-data user and group.
-uid = pwd.getpwnam('www-data')[2]
-gid = grp.getgrnam('www-data')[2]
+uid = pwd.getpwnam('t-web')[2]
+gid = grp.getgrnam('t-web')[2]
 
 # Generate the Application. You will not normally
 # want to modify this line.
