@@ -2,16 +2,16 @@
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-pidfile=$HOME/Run/$WEBSITE_NAME/twisted-web.pid
-rundir=$HOME/Run/$WEBSITE_NAME/
+pidfile=$HOME/run/twisted-web.pid
+rundir=$HOME/run/
 file=$WEBSITE_ROOT/twisted-web/twisted-web
-logfile=$HOME/Run/$WEBSITE_NAME/twisted-web.log
+logfile=$HOME/log/twisted-web.log
 more_args=--no_save
 
 #twistd=$HOME/.local/bin/twistd
 
 unset PYTHONPATH
-twistd=/srv/pypy/bin/twistd
+twistd=~pypy/bin/twistd
 
 [ -r $WEBSITE_ROOT/default/twisted-web ] && . $WEBSITE_ROOT/default/twisted-web
 
