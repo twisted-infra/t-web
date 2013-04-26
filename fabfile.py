@@ -2,7 +2,7 @@
 Support for DNS service installation and management.
 """
 
-from fabric.api import run, settings
+from fabric.api import run, settings, env
 
 from braid import authbind, bazaar, cron
 from braid.twisted import service
@@ -29,6 +29,11 @@ class TwistedWeb(service.Service):
             run('ln -nsf {}/start {}/start'.format(self.configDir, self.binDir))
             self.task_update()
             cron.install(self.serviceUser, '{}/crontab'.format(self.configDir))
+            
+            if env.get('environment') == 'production':
+                run('touch {}/production'.format(self.configDir))
+            else:
+                run('rm -f {}/production'.format(self.configDir))
 
     def task_update(self):
         """

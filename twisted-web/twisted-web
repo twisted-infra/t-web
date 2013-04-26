@@ -177,7 +177,10 @@ application.setComponent(
     FileLogObserver(LogFile("twistd.log", "/srv/t-web/log", maxRotatedFiles=10)).emit)
 
 # Listen on all ports specified:
-portPath = websiteRoot.child('twisted-web').child('ports')
+if websiteRoot.child('production').exists():
+    portPath = websiteRoot.child('twisted-web').child('ports')
+else:
+    portPath = websiteRoot.child('twisted-web').child('ports.testing')
 ports = [serverFromString(reactor, s)
          for s in portPath.getContent().splitlines()]
 del s, portPath
