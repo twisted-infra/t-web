@@ -2,8 +2,6 @@
 # please refer to README.Debian
 #
 
-import pwd, grp
-
 from twisted.internet import reactor
 from twisted.web import script, static, server, distrib, twcgi, vhost, rewrite
 from twisted.web import util as twutil, proxy
@@ -13,8 +11,9 @@ from twisted.internet.endpoints import serverFromString
 
 from twisted.python import filepath
 
-import sys
-sys.path.append('/srv/t-web/config/twisted-web')
+import sys, os
+sys.path.append(os.path.basename(__file__))
+
 from moved import Moved
 from frackresource import getFrackResource
 
@@ -148,7 +147,7 @@ root.addHost("dancingsausage.net", dsroot)
 # This absolute path is extremely obnoxious.  Why can't I just say
 # "httpd.log"?  The working directory when it is interpreted seems to be
 # wrong. -exarkun
-logPath = '/srv/t-web/log/httpd.log'
+logPath = os.path.expanduser('~/log/httpd.log')
 
 
 # Add a rule to rewrite /~foo/bar.html to /usrs/foo/bar.html
@@ -160,21 +159,16 @@ top = rewrite.RewriterResource(root, rewrite.tildeToUsers, rewrite.alias("highsc
 # want to modify this line.
 site = server.Site(top, logPath=logPath)
 
-# Set user/group to run under
-# Usually, it runs under the www-data user and group.
-uid = pwd.getpwnam('t-web')[2]
-gid = grp.getgrnam('t-web')[2]
-
 # Generate the Application. You will not normally
 # want to modify this line.
-application = service.Application("web", uid=uid, gid=gid)
+application = service.Application("web")
 
 # Limit the number of logfiles which will be kept when rotation is done.
 from twisted.python.log import ILogObserver, FileLogObserver
 from twisted.python.logfile import LogFile
 application.setComponent(
     ILogObserver,
-    FileLogObserver(LogFile("twistd.log", "/srv/t-web/log", maxRotatedFiles=10)).emit)
+    FileLogObserver(LogFile("twistd.log", os.path.expanduser("~/log"), maxRotatedFiles=10)).emit)
 
 # Listen on all ports specified:
 if websiteRoot.child('production').exists():
