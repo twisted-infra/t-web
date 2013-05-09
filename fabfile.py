@@ -6,6 +6,7 @@ from fabric.api import run, settings, env
 
 from braid import authbind, bazaar, cron
 from braid.twisted import service
+from braid.debian import equivs
 
 # TODO: Move these somewhere else and make them easily extendable
 from braid import config
@@ -24,6 +25,9 @@ class TwistedWeb(service.Service):
         # Setup authbind
         authbind.allow(self.serviceUser, 80)
         authbind.allow(self.serviceUser, 443)
+        
+        # Install httpd equiv, so apt doesn't try to install apache ever
+        equivs.installEquiv(self.serviceName, 'httpd')
 
         with settings(user=self.serviceUser):
             run('ln -nsf {}/start {}/start'.format(self.configDir, self.binDir))
