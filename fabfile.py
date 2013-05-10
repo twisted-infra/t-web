@@ -2,7 +2,7 @@
 Support for wwww service installation and management.
 """
 
-from fabric.api import run, settings, env, cd, put, abort
+from fabric.api import run, settings, env, cd, put, abort, sudo
 from fabric.contrib import files
 
 from braid import authbind, bazaar, cron
@@ -24,6 +24,9 @@ class TwistedWeb(service.Service):
         # Bootstrap a new service environment
         self.bootstrap()
 
+        # Add to www-data group. Mailman depends on this.
+        sudo('/usr/sbin/usermod -a -G www-data {}'.format(self.serviceUser))
+
         # Setup authbind
         authbind.allow(self.serviceUser, 80)
         authbind.allow(self.serviceUser, 443)
@@ -44,7 +47,7 @@ class TwistedWeb(service.Service):
                 run('rm -f {}/production'.format(self.configDir))
 
 
-    def task_installSSLKeys(self, key, cert):
+    def task_installSSLKeys(self, key=None, cert=None):
         """
         Install SSL keys.
 
