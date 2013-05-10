@@ -2,7 +2,8 @@
 Support for wwww service installation and management.
 """
 
-from fabric.api import run, settings, env, cd
+from fabric.api import run, settings, env, cd, put, abort
+from fabric.contrib import files
 
 from braid import authbind, bazaar, cron
 from braid.twisted import service
@@ -18,7 +19,7 @@ _hush_pyflakes = [config]
 class TwistedWeb(service.Service):
     def task_install(self):
         """
-        Install t-names, a Twisted Names based DNS server.
+        Install t-web, a Twisted Web based server.
         """
         # Bootstrap a new service environment
         self.bootstrap()
@@ -35,12 +36,32 @@ class TwistedWeb(service.Service):
             self.task_update()
             cron.install(self.serviceUser, '{}/crontab'.format(self.configDir))
 
-            run('mkdir ~/data')
-            
-            if env.get('environment') == 'production':
+            run('mkdir -p ~/data')
+            if env.get('installPrivateData'): 
+                self.task_installSSLKeys() 
                 run('touch {}/production'.format(self.configDir))
             else:
                 run('rm -f {}/production'.format(self.configDir))
+
+
+    def task_installSSLKeys(self, key, cert):
+        """
+        Install SSL keys.
+
+        @param key: Local path to key
+        @param cert: Local path to cert
+        """
+
+        with settings(user=self.serviceUser):
+            run('mkdir -p ~/ssl')
+            if key is not None:
+                put(key, '~/ssl/twistedmatrix.com.key', mode=600)
+            elif not files.exist('~/ssl/twistedmatrix.com.key'):
+                abort('Missing SSL key.')
+            if cert is not None:
+                put(cert, '~/ssl/twistedmatrix.com.crt')
+            elif not files.exist('~/ssl/twistedmatrix.com.crt'):
+                abort('Missing SSL certificate.')
 
 
     def task_update(self):
