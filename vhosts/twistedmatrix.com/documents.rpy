@@ -1,3 +1,4 @@
+from os.path import expanduser
 from twisted.web.static import File
 
-resource = File("/srv/www-data/distributable/documentation/")
+resource = File(expanduser("~/data/documentation/"))
