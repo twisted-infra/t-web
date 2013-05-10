@@ -58,7 +58,7 @@ class TwistedWeb(service.Service):
         with settings(user=self.serviceUser):
             run('mkdir -p ~/ssl')
             if key is not None:
-                put(key, '~/ssl/twistedmatrix.com.key', mode=600)
+                put(key, '~/ssl/twistedmatrix.com.key', mode=0600)
             elif not files.exist('~/ssl/twistedmatrix.com.key'):
                 abort('Missing SSL key.')
             if cert is not None:
