@@ -6,7 +6,7 @@ from fabric.api import run, settings, env, put, abort, sudo
 from fabric.contrib import files
 from fabric.contrib.console import confirm
 
-from braid import authbind, bazaar, cron, archive
+from braid import authbind, git, cron, archive
 from braid.twisted import service
 from braid.debian import equivs
 
@@ -67,14 +67,19 @@ class TwistedWeb(service.Service):
                 abort('Missing SSL certificate.')
 
 
-    def task_update(self):
+    def update(self):
         """
         Update config.
         """
         with settings(user=self.serviceUser):
-            # TODO: This is a temp location for testing
-            bazaar.branch('lp:~tom.prince/twisted-website/twisted-website-braided', self.configDir)
-            self.task_restart()
+            git.branch('https://github.com/twisted-infra/t-web', self.configDir)
+
+    def task_update(self):
+        """
+        Update config and restart.
+        """
+        self.update()
+        self.task_restart()
 
 
     def task_dump(self, dump):
