@@ -9,11 +9,10 @@ from fabric.contrib.console import confirm
 from braid import authbind, git, cron, archive
 from braid.twisted import service
 from braid.debian import equivs
+from braid.tasks import addTasks
 
-# TODO: Move these somewhere else and make them easily extendable
 from braid import config
-
-_hush_pyflakes = [config]
+__all__ = ['config']
 
 
 class TwistedWeb(service.Service):
@@ -108,4 +107,4 @@ class TwistedWeb(service.Service):
 
 
 
-globals().update(TwistedWeb('t-web').getTasks())
+addTasks(globals(), TwistedWeb('t-web').getTasks())
