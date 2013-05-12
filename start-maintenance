@@ -1,0 +1,7 @@
+#!/bin/bash
+
+authbind --deep ~pypy/bin/twistd \
+    --logfile ~/log/twistd.log \
+    --pidfile ~/run/twistd.pid \
+    web \
+    --resource-script ~/config/maintenance-site/site.rpy
