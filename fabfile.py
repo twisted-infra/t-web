@@ -36,7 +36,7 @@ class TwistedWeb(service.Service):
         with settings(user=self.serviceUser):
             run('/bin/ln -nsf {}/start {}/start'.format(self.configDir, self.binDir))
             run('/bin/ln -nsf {}/start-maintenance {}/start-maintenance'.format(self.configDir, self.binDir))
-            self.task_update()
+            self.update()
             cron.install(self.serviceUser, '{}/crontab'.format(self.configDir))
 
             run('/bin/mkdir -p ~/data')
