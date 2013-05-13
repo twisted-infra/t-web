@@ -4,12 +4,12 @@ Support for wwww service installation and management.
 
 from fabric.api import run, settings, env, put, abort, sudo
 from fabric.contrib import files
-from fabric.contrib.console import confirm
 
 from braid import authbind, git, cron, archive
 from braid.twisted import service
 from braid.debian import equivs
 from braid.tasks import addTasks
+from braid.utils import confirm
 
 from braid import config
 __all__ = ['config']
@@ -96,11 +96,8 @@ class TwistedWeb(service.Service):
         """
         Resotre non-versioned resources.
         """
-        msg = (
-            'All mailman state and archives will be replaced with the backup.\n'
-            'Do you want to proceed?'
-        )
-        if confirm(msg, default=False):
+        msg = 'All non-versioned web resources will be replaced with the backup.'
+        if confirm(msg):
             with settings(user=self.serviceUser):
                 archive.restore({
                     'data': '~/data',
