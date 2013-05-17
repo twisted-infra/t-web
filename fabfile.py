@@ -91,7 +91,7 @@ class TwistedWeb(service.Service):
         """
         with settings(user=self.serviceUser):
             archive.dump({
-                'data': '~/data',
+                'data': 'data',
                 }, dump)
 
 
@@ -103,7 +103,7 @@ class TwistedWeb(service.Service):
         if confirm(msg):
             with settings(user=self.serviceUser):
                 archive.restore({
-                    'data': '~/data',
+                    'data': 'data',
                     }, dump)
 
     def task_startMaintenanceSite(self):
