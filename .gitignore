@@ -1,1 +1,4 @@
 *.pyc
+
+twistedmatrix.com.crt
+twistedmatrix.com.key

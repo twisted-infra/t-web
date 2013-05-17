@@ -5,6 +5,9 @@ Support for wwww service installation and management.
 from fabric.api import run, settings, env, put, abort, sudo
 from fabric.contrib import files
 
+from os import path
+from twisted.python.util import sibpath
+
 from braid import authbind, git, cron, archive
 from braid.twisted import service
 from braid.debian import equivs
@@ -47,7 +50,7 @@ class TwistedWeb(service.Service):
                 run('/bin/rm -f {}/production'.format(self.configDir))
 
 
-    def task_installSSLKeys(self, key=None, cert=None):
+    def task_installSSLKeys(self, key=sibpath(__file__, 'twistedmatrix.com.key'), cert=sibpath(__file__, 'twistedmatrix.com.crt')):
         """
         Install SSL keys.
 
@@ -57,11 +60,11 @@ class TwistedWeb(service.Service):
 
         with settings(user=self.serviceUser):
             run('mkdir -p ~/ssl')
-            if key is not None:
+            if path.exists(key):
                 put(key, '~/ssl/twistedmatrix.com.key', mode=0600)
             elif not files.exist('~/ssl/twistedmatrix.com.key'):
                 abort('Missing SSL key.')
-            if cert is not None:
+            if path.exists(cert):
                 put(cert, '~/ssl/twistedmatrix.com.crt')
             elif not files.exist('~/ssl/twistedmatrix.com.crt'):
                 abort('Missing SSL certificate.')
