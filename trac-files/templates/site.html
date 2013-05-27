@@ -120,4 +120,13 @@
             ${select('*|comment()|text()')}
         </div>
     </py:match>
+
+    <!--! Add links to diffresource and buildbot -->
+    <py:match path="td[@headers='h_branch']">
+      <td headers="h_branch">
+	${ticket['branch']}<br/>
+        (<a href="/~diffresource.twistd/${ticket.id}">diff</a>,
+	<a href="http://buildbot.twistedmatrix.com/boxes-supported?branch=${ticket['branch']}">buildbot</a>)
+      </td>
+    </py:match>
 </html>
