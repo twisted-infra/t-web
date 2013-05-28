@@ -215,3 +215,33 @@ table.code tbody td {
 .wiki-toc ul ul, .wiki-toc ol ol { padding-left: 1.2em }
 .wiki-toc li { margin: 0; padding: 0 }
 .wiki-toc .active { background: #ddf482; position: relative; padding: 2px 0 2px 5px; border-left: 2px solid #bce715; }
+
+/* Styles for the path of hierarchical pages */
+#pagepath { 
+    font-size: 0.85em;
+    float: left;
+    margin-left: 0.5em;
+}
+#pagepath :link, #pagepath :visited { margin: 0 .2em }
+#pagepath .first:link, #pagepath .first:visited { color: #998 }
+#pagepath .sep { color: #666; padding: 0 .1em }
+#pagepath .pathentry { float: left }
+
+div.trac-modifiedby {
+    color: #888;
+    font-size: 80%;
+    font-style: italic;
+    text-align: right;
+    position: absolute;
+    right: 1em;
+}
+div.trac-modifiedby :link, div.trac-modifiedby :visited { color: inherit }
+div.trac-modifiedby span.trac-print { display: none; }
+@media print {
+ div.trac-modifiedby span { display: none; }
+ div.trac-modifiedby span.trac-print { display: block; }
+}
+
+#wikipage {
+    clear: both;
+}
