@@ -27,7 +27,7 @@ class TwistedWeb(service.Service):
         self.bootstrap()
 
         # Add to www-data group. Mailman depends on this.
-        sudo('/usr/sbin/usermod -a -G www-data {}'.format(self.serviceUser))
+        sudo('/usr/sbin/usermod -a -g www-data -G t-web {}'.format(self.serviceUser))
 
         # Setup authbind
         authbind.allow(self.serviceUser, 80)
