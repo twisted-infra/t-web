@@ -62,11 +62,11 @@ class TwistedWeb(service.Service):
             run('mkdir -p ~/ssl')
             if path.exists(key):
                 put(key, '~/ssl/twistedmatrix.com.key', mode=0600)
-            elif not files.exist('~/ssl/twistedmatrix.com.key'):
+            elif not files.exists('~/ssl/twistedmatrix.com.key'):
                 abort('Missing SSL key.')
             if path.exists(cert):
                 put(cert, '~/ssl/twistedmatrix.com.crt')
-            elif not files.exist('~/ssl/twistedmatrix.com.crt'):
+            elif not files.exists('~/ssl/twistedmatrix.com.crt'):
                 abort('Missing SSL certificate.')
 
 
