@@ -152,5 +152,13 @@ class TwistedWeb(service.Service):
             archive.restore(distPaths, releasesTarball)
 
 
+    def task_updateCurrentDocumentation(self, release):
+        """
+        Update the current link for documentation
+        """
+        with settings(user=self.serviceUser):
+            run('/bin/ln -nsf {} data/documentation/current'.format(release))
+
+
 
 addTasks(globals(), TwistedWeb('t-web').getTasks())
