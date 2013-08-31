@@ -12,3 +12,6 @@ class MemoryDebugService(TimerService):
     def _report(self):
         gc.dump_rpy_heap(b"%d-%d.rpy_heap" % (os.getpid(), self.counter))
         self.counter += 1
+
+
+MemoryDebugService().setServiceParent(application)
