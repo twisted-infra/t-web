@@ -13,5 +13,5 @@ class MemoryDebugService(TimerService):
         gc.dump_rpy_heap(b"%d-%d.rpy_heap" % (os.getpid(), self.counter))
         self.counter += 1
 
-
-MemoryDebugService().setServiceParent(application)
+if 'PYPY_RPY_HEAP' in os.environ:
+    MemoryDebugService().setServiceParent(application)
