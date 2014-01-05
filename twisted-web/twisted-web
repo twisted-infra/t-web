@@ -56,7 +56,7 @@ for file in vhostDir.children():
     root.addHost(file.basename(), r)
     root.addHost('www.' + file.basename(), r)
 
-root.default = root.hosts[HOSTNAME]
+root.default = root.hosts["twistedmatrix.com"]
 root.hosts['www.' + HOSTNAME] = twutil.ChildRedirector('http://%s/' % (HOSTNAME,))
 tm = root.default
 
