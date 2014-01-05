@@ -17,6 +17,8 @@ sys.path.append(os.path.dirname(__file__))
 from moved import Moved
 from frackresource import getFrackResource
 
+HOSTNAME = "54.197.93.183"
+
 class BugsRedirect(twutil.Redirect):
     isLeaf = False
     def __init__(self):
@@ -54,11 +56,11 @@ for file in vhostDir.children():
     root.addHost(file.basename(), r)
     root.addHost('www.' + file.basename(), r)
 
-root.default = root.hosts['twistedmatrix.com']
-root.hosts['www.twistedmatrix.com'] = twutil.ChildRedirector('http://twistedmatrix.com/')
+root.default = root.hosts[HOSTNAME]
+root.hosts['www.' + HOSTNAME] = twutil.ChildRedirector('http://%s/' % (HOSTNAME,))
 tm = root.default
 
-tm.putChild('', twutil.Redirect('http://twistedmatrix.com/trac/'))
+tm.putChild('', twutil.Redirect('http://%s/trac/' % (HOSTNAME,)))
 
 # These are children no matter what domain you use
 root.putChild('mailman', twcgi.CGIDirectory('/usr/lib/cgi-bin'))
@@ -73,35 +75,35 @@ root.putChild('cgi-bin', twcgi.CGIDirectory('/usr/lib/cgi-bin'))
 ### BuildBot
 ###
 
-root.addHost('buildbot.twistedmatrix.com', proxy.ReverseProxyResource('localhost', 8080, ''))
+root.addHost('buildbot.%s' % (HOSTNAME,), proxy.ReverseProxyResource('localhost', 8080, ''))
 
 # These old names shouldn't be used anymore.  Just redirect to the new locations for a while.
-tm.putChild('buildbot', twutil.Redirect('http://buildbot.twistedmatrix.com/waterfall'))
-tm.putChild('buildbot-supported', twutil.Redirect('http://buildbot.twistedmatrix.com/supported?branch=trunk'))
+tm.putChild('buildbot', twutil.Redirect('http://buildbot.%s/waterfall' % (HOSTNAME,)))
+tm.putChild('buildbot-supported', twutil.Redirect('http://buildbot.%s/supported?branch=trunk' % (HOSTNAME,)))
 
 ###
 ### Codespeed Speedcenter
 ###
 
-root.addHost('speed.twistedmatrix.com', proxy.ReverseProxyResource('localhost', 8123, '/http/speed.twistedmatrix.com'))
+root.addHost('speed.%s' % (HOSTNAME,), proxy.ReverseProxyResource('localhost', 8123, '/http/speed.twistedmatrix.com'))
 
 ###
 ### Other stuff
 ###
 
-root.addHost('staging.twistedmatrix.com', proxy.ReverseProxyResource('127.0.0.1', 9882, ''))
+root.addHost('staging.%s' % (HOSTNAME,), proxy.ReverseProxyResource('127.0.0.1', 9882, ''))
 
 trac = proxy.ReverseProxyResource('127.0.0.1', 9881, '/trac')
 trac.putChild('chrome', static.File(websiteRoot.child('trac-files').path))
 tm.putChild('trac', trac)
 
 
-projects = Moved('http://twistedmatrix.com/trac/wiki/TwistedProjects')
-projects.putChild("", Moved('http://twistedmatrix.com/trac/wiki/TwistedProjects'))
-projects.putChild("index.html", Moved('http://twistedmatrix.com/trac/wiki/TwistedProjects'))
+projects = Moved('http://%s/trac/wiki/TwistedProjects' % (HOSTNAME,))
+projects.putChild("", Moved('http://%s/trac/wiki/TwistedProjects' % (HOSTNAME,)))
+projects.putChild("index.html", Moved('http://%s/trac/wiki/TwistedProjects' % (HOSTNAME,)))
 
 for project in "conch", "core", "flow", "lore", "mail", "names", "news", "pair", "runner", "web", "web2", "words":
-    projects.putChild(project, Moved('http://twistedmatrix.com/trac/wiki/Twisted' + project.title()))
+    projects.putChild(project, Moved('http://%s/trac/wiki/Twisted%s' % (HOSTNAME, project.title())))
 
 # Frack is the future.
 tm.putChild('frack', getFrackResource(reactor))
@@ -115,7 +117,7 @@ root.addHost('radix.twistedmatrix.com', distrib.ResourceSubscription('unix', '/h
 root.addHost('saph.twistedmatrix.com', distrib.ResourceSubscription('unix', '/home/saph/.twistd-web-pb'))
 
 #backwards compatibility:
-root.addHost('projects.twistedmatrix.com', twutil.ChildRedirector('http://twistedmatrix.com/trac/wiki/TwistedProjects'))
+root.addHost('projects.%s' % (HOSTNAME,), twutil.ChildRedirector('http://%s/trac/wiki/TwistedProjects' % (HOSTNAME,)))
 
 
 # dancingsausage.net
