@@ -55,10 +55,10 @@ for file in vhostDir.children():
     root.addHost('www.' + file.basename(), r)
 
 root.default = root.hosts['twistedmatrix.com']
-root.hosts['www.twistedmatrix.com'] = twutil.ChildRedirector('http://twistedmatrix.com/')
+root.hosts['www.twistedmatrix.com'] = twutil.ChildRedirector('https://twistedmatrix.com/')
 tm = root.default
 
-tm.putChild('', twutil.Redirect('http://twistedmatrix.com/trac/'))
+tm.putChild('', twutil.Redirect('https://twistedmatrix.com/trac/'))
 
 # These are children no matter what domain you use
 root.putChild('mailman', twcgi.CGIDirectory('/usr/lib/cgi-bin'))
@@ -96,12 +96,12 @@ trac.putChild('chrome', static.File(websiteRoot.child('trac-files').path))
 tm.putChild('trac', trac)
 
 
-projects = Moved('http://twistedmatrix.com/trac/wiki/TwistedProjects')
-projects.putChild("", Moved('http://twistedmatrix.com/trac/wiki/TwistedProjects'))
-projects.putChild("index.html", Moved('http://twistedmatrix.com/trac/wiki/TwistedProjects'))
+projects = Moved('https://twistedmatrix.com/trac/wiki/TwistedProjects')
+projects.putChild("", Moved('https://twistedmatrix.com/trac/wiki/TwistedProjects'))
+projects.putChild("index.html", Moved('https://twistedmatrix.com/trac/wiki/TwistedProjects'))
 
 for project in "conch", "core", "flow", "lore", "mail", "names", "news", "pair", "runner", "web", "web2", "words":
-    projects.putChild(project, Moved('http://twistedmatrix.com/trac/wiki/Twisted' + project.title()))
+    projects.putChild(project, Moved('https://twistedmatrix.com/trac/wiki/Twisted' + project.title()))
 
 # Frack is the future.
 tm.putChild('frack', getFrackResource(reactor))
@@ -115,7 +115,7 @@ root.addHost('radix.twistedmatrix.com', distrib.ResourceSubscription('unix', '/h
 root.addHost('saph.twistedmatrix.com', distrib.ResourceSubscription('unix', '/home/saph/.twistd-web-pb'))
 
 #backwards compatibility:
-root.addHost('projects.twistedmatrix.com', twutil.ChildRedirector('http://twistedmatrix.com/trac/wiki/TwistedProjects'))
+root.addHost('projects.twistedmatrix.com', twutil.ChildRedirector('https://twistedmatrix.com/trac/wiki/TwistedProjects'))
 
 
 # dancingsausage.net
