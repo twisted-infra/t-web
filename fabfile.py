@@ -1,5 +1,5 @@
 """
-Support for wwww service installation and management.
+Support for www service installation and management.
 """
 
 from fabric.api import run, settings, env, put, abort, sudo
