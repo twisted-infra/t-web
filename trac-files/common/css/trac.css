@@ -364,6 +364,11 @@ input[name="save"]:hover {
 }
 
 /* Context-dependent navigation links */
+#pagepath {
+    padding: 0.25em 0.75em;
+    padding-bottom: 0;
+    font-size: 0.85em;
+}
 #ctxtnav {
     padding: .5em 0;
 }
