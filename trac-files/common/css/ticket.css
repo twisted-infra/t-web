@@ -100,7 +100,6 @@ h1 .status { color: #444; }
     padding: 0.35em 0 0;
     border: none;
 }
-#changelog div.change,
 #changelog .printableform {
     padding: 2em 1em;
     border: 1px solid;
@@ -110,7 +109,6 @@ h1 .status { color: #444; }
     position: relative;
     background: #fff;
 }
-#changelog div.change:nth-child(2n),
 #changelog .printableform:nth-child(2n) {
     background: #e7e7e7;
 }
@@ -190,11 +188,6 @@ fieldset.radio label { padding-right: 1em }
     background: #7e9ac2;
 }
 
-.cnum a {
-    text-decoration: none;
-}
-
-.cnum,
 .comment-number {
     position: absolute;
     top: 0;
@@ -205,7 +198,6 @@ fieldset.radio label { padding-right: 1em }
     color: #ddd;
 }
 
-#changelog div.change:hover .cnum,
 #changelog .printableform:hover .comment-number {
     color: #ced7ae;
     display: block;
