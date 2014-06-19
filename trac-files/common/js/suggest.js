@@ -1,7 +1,11 @@
-
+/* Warning: this module is deprecated and will be removed in Trac 1.1.x
+ *
+ * Don't use $.suggest in your own plugins, rather look into jquery-ui's
+ * autocomplete features (http://docs.jquery.com/UI/Autocomplete).
+ */
 (function($){
-  
-  
+
+
   /*
    Text field auto-completion plugin for jQuery.
    Based on http://www.dyve.net/jquery/?autocomplete by Dylan Verheul.
@@ -12,7 +16,7 @@
     var prev = "";
     var selectedIndex = -1;
     var results = null;
-  
+
     input.keydown(function(e) {
       switch(e.keyCode) {
         case 27: // escape
@@ -53,7 +57,7 @@
       if (timeout) clearTimeout(timeout);
       timeout = setTimeout(hide, 200);
     });
-  
+
     function hide() {
       if (timeout) clearTimeout(timeout);
       input.removeClass("loading");
@@ -64,7 +68,7 @@
       $("iframe.iefix").remove();
       selectedIndex = -1;
     }
-  
+
     function move(index) {
       if (!results) return;
       items = $("li", results);
@@ -72,7 +76,7 @@
       $(items[index]).addClass("selected");
       selectedIndex = index;
     }
-  
+
     function select(li) {
       if (!li) li = $("<li>");
       else li = $(li);
@@ -82,7 +86,7 @@
       hide();
       selectedIndex = -1;
     }
-  
+
     function show() {
       var val = input.val();
       if (val == prev) return;
@@ -108,7 +112,7 @@
               " class='iefix' src='javascript:false;' frameborder='0'" +
               " scrolling='no'></iframe>").insertAfter(results);
             setTimeout(function() {
-              var offset = getOffset(results);
+              var offset = $(results).offset();
               iframe.css({
                 top: offset.top + "px",
                 right: (offset.left + results.get(0).offsetWidth) + "px",
@@ -127,10 +131,10 @@
                  function() { $(this).removeClass("selected") })
           .click(function() { select(this); input.get(0).focus() });
         move(0);
-      });
+      }, 'html');
     }
   }
-  
+
   $.fn.suggest = function(url, paramName, minChars, delay) {
     url = url || window.location.pathname;
     paramName = paramName || 'q';

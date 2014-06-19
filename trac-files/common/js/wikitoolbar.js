@@ -1,17 +1,17 @@
 
 
 (function($){
-  
-  
+
+
   window.addWikiFormattingToolbar = function(textarea) {
     if ((document.selection == undefined)
      && (textarea.setSelectionRange == undefined)) {
       return;
     }
-  
+
     var toolbar = document.createElement("div");
     toolbar.className = "wikitoolbar";
-  
+
     function addButton(id, title, fn) {
       var a = document.createElement("a");
       a.href = "#";
@@ -21,7 +21,7 @@
       a.tabIndex = 400;
       toolbar.appendChild(a);
     }
-  
+
     function encloseSelection(prefix, suffix) {
       textarea.focus();
       var start, end, sel, scrollPos, subst;
@@ -52,35 +52,35 @@
         textarea.scrollTop = scrollPos;
       }
     }
-  
-    addButton("strong", "Bold text: '''Example'''", function() {
+
+    addButton("strong", _("Bold text: '''Example'''"), function() {
       encloseSelection("'''", "'''");
     });
-    addButton("em", "Italic text: ''Example''", function() {
+    addButton("em", _("Italic text: ''Example''"), function() {
       encloseSelection("''", "''");
     });
-    addButton("heading", "Heading: == Example ==", function() {
+    addButton("heading", _("Heading: == Example =="), function() {
       encloseSelection("\n== ", " ==\n", "Heading");
     });
-    addButton("link", "Link: [http://www.example.com/ Example]", function() {
+    addButton("link", _("Link: [http://www.example.com/ Example]"), function() {
       encloseSelection("[", "]");
     });
-    addButton("code", "Code block: {{{ example }}}", function() {
+    addButton("code", _("Code block: {{{ example }}}"), function() {
       encloseSelection("\n{{{\n", "\n}}}\n");
     });
-    addButton("hr", "Horizontal rule: ----", function() {
+    addButton("hr", _("Horizontal rule: ----"), function() {
       encloseSelection("\n----\n", "");
     });
-    addButton("np", "New paragraph", function() {
+    addButton("np", _("New paragraph"), function() {
       encloseSelection("\n\n", "");
     });
-    addButton("br", "Line break: [[BR]]", function() {
+    addButton("br", _("Line break: [[BR]]"), function() {
       encloseSelection("[[BR]]\n", "");
     });
-    addButton("img", "Image: [[Image()]]", function() {
+    addButton("img", _("Image: [[Image()]]"), function() {
       encloseSelection("[[Image(", ")]]");
     });
-  
+
     $(textarea).before(toolbar);
   }
 
