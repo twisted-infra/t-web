@@ -215,3 +215,7 @@ table.code tbody td {
 .wiki-toc ul ul, .wiki-toc ol ol { padding-left: 1.2em }
 .wiki-toc li { margin: 0; padding: 0 }
 .wiki-toc .active { background: #ddf482; position: relative; padding: 2px 0 2px 5px; border-left: 2px solid #bce715; }
+
+#pagepath {
+    text-align: right;
+}

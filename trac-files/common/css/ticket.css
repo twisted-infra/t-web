@@ -100,7 +100,7 @@ h1 .status { color: #444; }
     padding: 0.35em 0 0;
     border: none;
 }
-#changelog .printableform {
+#changelog > .change {
     padding: 2em 1em;
     border: 1px solid;
     border-color: #ddd #aaa #aaa #ddd;
@@ -109,7 +109,7 @@ h1 .status { color: #444; }
     position: relative;
     background: #fff;
 }
-#changelog .printableform:nth-child(2n) {
+#changelog > .change:nth-child(2n) {
     background: #e7e7e7;
 }
 
@@ -155,17 +155,17 @@ fieldset.radio legend {
 }
 fieldset.radio label { padding-right: 1em }
 
-.ticket h1 .title {
+.ticket .trac-id {
     vertical-align: middle;
 }
 
-.ticket h1 .statuses {
+.ticket .statuses {
     float: right;
 }
 
-.ticket h1 .status,
-.ticket h1 .type,
-.ticket h1 .resolution {
+.ticket .statuses .status,
+.ticket .statuses .type,
+.ticket .statuses .resolution {
     text-transform: uppercase;
     color: #fff;
     padding: 0.35em 0.5em;
@@ -176,15 +176,15 @@ fieldset.radio label { padding-right: 1em }
     margin: 0 0.25em 0 0;
 }
 
-.ticket h1 .status {
+.ticket .statuses .status {
     background: #c27e7e;
 }
 
-.ticket h1 .type {
+.ticket .statuses .type {
     background: #a2b16c;
 }
 
-.ticket h1 .resolution {
+.ticket .statuses .resolution {
     background: #7e9ac2;
 }
 
@@ -198,7 +198,7 @@ fieldset.radio label { padding-right: 1em }
     color: #ddd;
 }
 
-#changelog .printableform:hover .comment-number {
+#changelog > .change:hover .comment-number {
     color: #ced7ae;
     display: block;
 }
