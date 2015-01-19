@@ -2,13 +2,12 @@
 Support for www service installation and management.
 """
 
-from fabric.api import run, settings, env, put, abort, sudo
-from fabric.contrib import files
+from fabric.api import run, settings, env, put, sudo
 
 from os import path
 from twisted.python.util import sibpath
 
-from braid import authbind, git, cron, archive
+from braid import authbind, git, cron, archive, pip
 from braid.twisted import service
 from braid.debian import equivs
 from braid.tasks import addTasks
@@ -32,51 +31,48 @@ class TwistedWeb(service.Service):
         # Setup authbind
         authbind.allow(self.serviceUser, 80)
         authbind.allow(self.serviceUser, 443)
-        
+
         # Install httpd equiv, so apt doesn't try to install apache ever
         equivs.installEquiv(self.serviceName, 'httpd')
 
         with settings(user=self.serviceUser):
+            pip.install('txsni', python='pypy')
             run('/bin/ln -nsf {}/start {}/start'.format(self.configDir, self.binDir))
             run('/bin/ln -nsf {}/start-maintenance {}/start-maintenance'.format(self.configDir, self.binDir))
             self.update()
             cron.install(self.serviceUser, '{}/crontab'.format(self.configDir))
 
             run('/bin/mkdir -p ~/data')
-            if env.get('installPrivateData'): 
-                self.task_installSSLKeys() 
+            if env.get('installPrivateData'):
+                self.task_installSSLKeys()
                 run('/usr/bin/touch {}/production'.format(self.configDir))
             else:
                 run('/bin/rm -f {}/production'.format(self.configDir))
 
 
-    def task_installSSLKeys(self, key=sibpath(__file__, 'twistedmatrix.com.key'), cert=sibpath(__file__, 'twistedmatrix.com.crt')):
+    def task_installSSLKeys(self):
         """
         Install SSL keys.
-
-        @param key: Local path to key
-        @param cert: Local path to cert
         """
+        cert = sibpath(__file__, 'twistedmatrix.com.crt')
 
         with settings(user=self.serviceUser):
             run('mkdir -p ~/ssl')
-            if path.exists(key):
-                put(key, '~/ssl/twistedmatrix.com.key', mode=0600)
-            elif not files.exists('~/ssl/twistedmatrix.com.key'):
-                abort('Missing SSL key.')
-            if path.exists(cert):
-                put(cert, '~/ssl/twistedmatrix.com.crt')
-            elif not files.exists('~/ssl/twistedmatrix.com.crt'):
-                abort('Missing SSL certificate.')
-
+            for cert in ['www.twistedmatrix.com.pem',
+                         'buildbot.twistedmatrix.com.pem']:
+                fullpath = sibpath(__file__, cert)
+                if path.exists(fullpath):
+                    put(fullpath, '~/ssl/' + cert, mode=0600)
+            run('ln -s ~/ssl/www.twistedmatrix.com.pem '
+                '~/ssl/twistedmatrix.com.pem')
+            run('ln -s ~/ssl/www.twistedmatrix.com.pem ~/ssl/DEFAULT.pem')
 
     def update(self):
         """
         Update config.
         """
         with settings(user=self.serviceUser):
-            git.push(path.dirname(__file__),
-                     self.configDir)
+            git.push(path.dirname(__file__), self.configDir)
 
 
     def task_update(self):
