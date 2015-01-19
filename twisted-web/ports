@@ -1,2 +1,2 @@
 tcp:80
-ssl:443:privateKey=/srv/t-web/ssl/twistedmatrix.com.key:certKey=/srv/t-web/ssl/twistedmatrix.com.crt:extraCertChain=/srv/t-web/config/twisted-web/startcom-chain.pem
+txsni:/srv/t-web/ssl:tcp:443
