@@ -112,5 +112,51 @@ class TwistedWeb(service.Service):
             run('{}/start-maintenance'.format(self.binDir))
 
 
+    def task_uploadRelease(self, release, releasesTarball):
+        """
+        Upload a relase.
+
+        It expects a tarball containing the following files:
+        - Twisted<Subproject>-<release>.tar.bz2
+        - Twisted-<release>.<ext> for all source/windows installers
+        - twisted-<release>-<hash>.txt for md5 and sha512
+        - doc - for narative documentation
+        - api - for api documents
+
+        @param release: Release version.
+        @param releasesTarball: Tarball with release tarballs and documentation
+        """
+        apiVersion = '.'.join(release.split('.')[:2])
+        distPaths = {}
+        for ext in ['.tar.bz2',
+                 '-cp27-none-win32.whl', '.win32-py2.7.exe', '.win32-py2.7.msi',
+                 '.win-amd64-py2.7.msi', '.win-amd64-py2.7.exe', '-cp27-none-win_amd64.whl']:
+            tarball = 'Twisted-{}{}'.format(release, ext)
+            distPaths[tarball] = 'data/releases/Twisted/{}/{}'.format(apiVersion, tarball)
+        for subproject in ['Core', 'Conch', 'Lore', 'Mail', 'Names', 'News', 'Pair', 'Runner', 'Web', 'Words']:
+            tarball = 'Twisted{}-{}.tar.bz2'.format(subproject, release)
+            distPaths[tarball] = 'data/releases/{}/{}/{}'.format(subproject, apiVersion, tarball)
+
+        distPaths['doc'] = 'data/documentation/{}'.format(release)
+        distPaths['api'] = 'data/documentation/{}/api'.format(release)
+        for hash in ['md5sums', 'shasums']:
+            hashFile = 'twisted-{}-{}.txt'.format(release,hash)
+            distPaths[hashFile] = 'data/releases/{}'.format(hashfile)
+
+        directories = [path.dirname(file) for file in distPaths.values()]
+
+        with settings(user=self.serviceUser):
+            run('/bin/mkdir -p {}'.format(' '.join(set(directories))))
+            archive.restore(distPaths, releasesTarball)
+
+
+    def task_updateCurrentDocumentation(self, release):
+        """
+        Update the current link for documentation
+        """
+        with settings(user=self.serviceUser):
+            run('/bin/ln -nsf {} data/documentation/current'.format(release))
+
+
 
 addTasks(globals(), TwistedWeb('t-web').getTasks())
