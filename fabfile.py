@@ -143,7 +143,7 @@ class TwistedWeb(service.Service):
         distPaths['api'] = 'data/documentation/{}/api'.format(release)
         for hash in ['md5sums', 'shasums']:
             hashFile = 'twisted-{}-{}.txt'.format(release,hash)
-            distPaths[hashFile] = 'data/releases/{}'.format(hashfile)
+            distPaths[hashFile] = 'data/releases/{}'.format(hashFile)
 
         directories = [path.dirname(file) for file in distPaths.values()]
 
