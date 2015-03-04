@@ -13,6 +13,8 @@ Disallow: /trac/newticket
 Disallow: /trac/search
 Disallow: /trac/diff
 Disallow: /projects/
+Allow: /documents/current/
+Disallow: /documents/
 
 User-agent: AhrefsBot
 Disallow: /
