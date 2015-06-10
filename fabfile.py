@@ -72,7 +72,7 @@ class TwistedWeb(service.Service):
         Update config.
         """
         with settings(user=self.serviceUser):
-            git.push(path.dirname(__file__), self.configDir)
+            git.branch('https://github.com/twisted-infra/t-web', self.configDir)
 
 
     def task_update(self):
